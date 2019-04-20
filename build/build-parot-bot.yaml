@@ -1,24 +1,25 @@
-apiVersion: build.knative.dev/v1alpha1
-kind: Build
-metadata:
-  name: build-parot-bot
-spec:
-  # serviceAccountName: build-bot
-  source:
-    git:
-      url: "https://github.com/PXMYH/knative_tutorial.git"
-      revision: "master"
-    subPath: "app/"
-  # template:
-  #   name: docker-build
-  #   arguments:
-  #     - name: IMAGE
-  #       value: us.icr.io/delphi/parot:v1
+---
+  apiVersion: build.knative.dev/v1alpha1
+  kind: Build
+  metadata:
+    name: build-parot-bot
+  spec:
+    serviceAccountName: build-bot
+    source:
+      git:
+        url: https://github.com/PXMYH/knative_tutorial.git
+        revision: master
+      subPath: app/
+    # template:
+    #   name: docker-build
+    #   arguments:
+    #     - name: IMAGE
+    #       value: us.icr.io/delphi/parot:v1
 
-  steps:
-    - name: build-and-push
-      image: "gcr.io/kaniko-project/executor:latest"
-      args:
-        - "--dockerfile=/workspace/Dockerfile"
-        # Replace {meteatamel} with your actual DockerHub
-        - "--destination=docker.io/coeus77/parot:v1"
+    steps:
+      - name: build-and-push
+        image: "gcr.io/kaniko-project/executor:latest"
+        args:
+          - "--dockerfile=/workspace/Dockerfile"
+          # Replace {meteatamel} with your actual DockerHub
+          - "--destination=docker.io/coeus77/parot:v1"
