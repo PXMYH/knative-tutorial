@@ -1,0 +1,21 @@
+# Disable sudo to speed up the build
+sudo: false
+
+# Set the build language to Python
+language: python
+
+# Set the python version to 2.7
+python: 3.7-dev
+
+# Install the codecov pip dependency
+install:
+  - pip install -r requirements.txt
+
+script:
+  - pytest
+
+services:
+  - docker
+
+before_install:
+  - docker build -t coeus77/echo .
