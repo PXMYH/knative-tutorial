@@ -18,3 +18,5 @@ services:
 
 before_install:
   - docker build app -t coeus77/echo
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push coeus77/echo
