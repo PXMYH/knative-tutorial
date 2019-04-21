@@ -1,6 +1,6 @@
-# Build
+# Serving
 
-Use Knative Build to compile code and deploy to container registry
+Use Knative Serving to deploy code and deploy to Kubernetes
 
 ```bash
 # install build template
