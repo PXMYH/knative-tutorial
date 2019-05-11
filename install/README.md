@@ -17,6 +17,9 @@ minikube start --memory=8192 --cpus=2 \
   --vm-driver=hyperkit \
   --disk-size=20g \
   --extra-config=apiserver.enable-admission-plugins="LimitRanger,NamespaceExists,NamespaceLifecycle,ResourceQuota,ServiceAccount,DefaultStorageClass,MutatingAdmissionWebhook"
+
+# verify the context
+kubectl config current-context
 ```
 
 ## Hosted Solutions
