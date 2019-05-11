@@ -6,19 +6,24 @@ language: python
 
 # Set the python version to 2.7
 python: 3.7-dev
+env:
+  global:
+    - secure: JZ2YHdqT2xGKBPV35oTI1d1Gnb6l25TIJ03VoYp0gWxUsKn8zu3adykOIFupd/5SXs25c7ztqYK6qaRYBOdfODMfsSMpmp3SXbRF38wKjySrannhQ+xxQpAVNnA6pUi78Xq1Jrh9elxfckFp/zabx6J/9vsyO80IDDMHK/P3yPRHT10wqh8OetMYA8hGUypGmcB4RlTQUA0gYK0Zg2Mbz29c4rFLQwm8CokcRe+gH+CiVI5vDMfB8246zI4sGV5RGduRgw1FfiSWv0OGUFU7CyvGBflW/u4IJk1MZ1NUkXTsQMrTEJZSzm2Iox3YOgMGawwjgw95DVN70WKl+7hvOMsr8VYFyeZHi8mtQP7EqV3yTbUTQ2xx32Q+od/hRKFPW80NScsqHOSPBKXdi/WTy9RAM9b4w4hXk6kzwlSGk6WOITO2ab1RRH300msLEozPEWKtsmjvpbZwVlnBRngEhPs+C1Q7SklO65SBuZIaO8CbaNXOOLw50gXL6lZ//ONQCN5hrLqUR3vdLeeX8ibXKzU60eai8f76zlZCbK/z6UTup8astHOOL2OUc6LiS4ovu1rU1WzRseFhEbPIAk0mOTguJ/WHc3QJb+6My2tdUJMT3VLpBr5kYDK+Gi51fNFlTb0pI2gbL2KAPhpLeugr99/VW9cH1+vd9WtYd0Tm+/I=
 
 install:
   - pip install -r app/requirements.txt
 
 script:
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
-  - pytest
+- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests;
+  fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests;
+  fi
+- pytest
 
 services:
   - docker
 
 before_install:
-  - docker build app -t coeus77/echo
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push coeus77/echo
+- docker build app -t coeus77/echo
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push coeus77/echo
