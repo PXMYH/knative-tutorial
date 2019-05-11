@@ -12,5 +12,5 @@ kubectl apply --filename service-account.yaml
 # need to grant `cluster admin` permission to the user
 kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=system:serviceaccount:knative-serving:controller
 
-kubectl apply --filename service.yaml
+kubectl apply --filename build-echo-bot.yaml
 ```
